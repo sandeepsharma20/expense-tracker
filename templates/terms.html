@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Terms and Conditions — Spendly{% endblock %}
+
+{% block content %}
+<section class="terms-section">
+    <div class="terms-inner">
+        <h1 class="terms-title">Terms and Conditions</h1>
+        <p class="terms-last-updated">Last Updated: May 14, 2026</p>
+
+        <div class="terms-content">
+            <section class="terms-article">
+                <h2 class="terms-subtitle">1. Acceptance of Terms</h2>
+                <p>By accessing or using Spendly, you agree to be bound by these Terms and Conditions. If you do not agree to all of these terms, do not use the service.</p>
+            </section>
+
+            <section class="terms-article">
+                <h2 class="terms-subtitle">2. Use of Service</h2>
+                <p>Spendly provides a personal finance tracking tool. You are responsible for maintaining the confidentiality of your account and password. You agree to use the service only for lawful purposes and in a manner that does not infringe upon the rights of others.</p>
+            </section>
+
+            <section class="terms-article">
+                <h2 class="terms-subtitle">3. User Data</h2>
+                <p>Your financial data is your own. We use the information you provide solely to facilitate the tracking of your expenses. We do not sell your data to third parties. Please refer to our Privacy Policy for more details on how we handle your information.</p>
+            </section>
+
+            <section class="terms-article">
+                <h2 class="terms-subtitle">4. Limitations of Liability</h2>
+                <p>Spendly is provided "as is" without any warranties, express or implied. We are not liable for any financial losses, data loss, or damages resulting from the use or inability to use the service. Use the tool at your own risk.</p>
+            </section>
+
+            <section class="terms-article">
+                <h2 class="terms-subtitle">5. Changes to Terms</h2>
+                <p>We reserve the right to modify these terms at any time. We will notify users of significant changes via the application or email. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+            </section>
+
+            <section class="terms-article">
+                <h2 class="terms-subtitle">6. Contact Us</h2>
+                <p>If you have any questions about these Terms, please contact us via our official support channels.</p>
+            </section>
+        </div>
+    </div>
+</section>
+
+<style>
+    .terms-section {
+        padding: 5rem 2rem;
+        color: var(--ink);
+        line-height: 1.7;
+    }
+    .terms-inner {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .terms-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        text-align: center;
+        letter-spacing: -0.02em;
+    }
+    .terms-last-updated {
+        text-align: center;
+        color: var(--ink-muted);
+        margin-bottom: 3rem;
+        font-size: 0.9rem;
+    }
+    .terms-article {
+        margin-bottom: 2.5rem;
+    }
+    .terms-subtitle {
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        color: var(--accent);
+    }
+    .terms-content p {
+        font-size: 1rem;
+        color: var(--ink-soft);
+    }
+</style>
+{% endblock %}
