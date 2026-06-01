@@ -2,6 +2,78 @@
 
 {% block title %}Spendly — Track Every Rupee{% endblock %}
 
+{% block head %}
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: 2% auto;
+        padding: 0;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        animation: modalFadeIn 0.3s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .close-btn:hover {
+        color: #fff;
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <section class="hero">
@@ -11,12 +83,12 @@
         <span class="highlight">Know where it goes.</span>
     </h1>
     <p class="hero-subtitle">
-        Spendly helps you log expenses, spot patterns, and stay<br>
+        Spendly helps you log expenses, spot patterns, and stay
         on budget — without the spreadsheet headache.
     </p>
     <div class="hero-actions">
         <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
-        <a href="{{ url_for('login') }}" class="btn-ghost">See how it works</a>
+        <a href="#" class="btn-ghost" id="watch-video-btn">See how it works</a>
     </div>
     <div class="hero-visual">
         <div class="mock-card">
@@ -94,4 +166,63 @@
     </div>
 </section>
 
+<!-- Video Modal -->
+<div id="video-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        <div class="video-container">
+            <iframe id="video-iframe" width="560" height="315" src=""
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('watch-video-btn');
+        const modal = document.getElementById('video-modal');
+        const closeBtn = document.getElementById('close-modal');
+        const iframe = document.getElementById('video-iframe');
+
+        // YouTube video ID (placeholder - replace with actual video ID later)
+        const videoId = 'dQw4w9WgXcQ'; // Rick Roll as placeholder - you'll replace this
+
+        // Open modal when button is clicked
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Set the video source with autoplay
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            modal.style.display = 'block';
+        });
+
+        // Close modal when close button is clicked
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            // Stop the video by removing the source
+            iframe.src = '';
+        });
+
+        // Close modal when clicking outside the content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                // Stop the video by removing the source
+                iframe.src = '';
+            }
+        });
+
+        // Optional: Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                iframe.src = '';
+            }
+        });
+    });
+</script>
 {% endblock %}
